@@ -172,3 +172,5 @@ See [LICENSE](LICENSE) for the full text.
 - Siona Larsen
 - https://www.linkedin.com/in/sionalarsen/
 - Blog: https://sionalarsen-sys.github.io/
+
+P.S. - While a proper mascot is in the wishlist, I created abuddy as an emoticon to try to invoke a penguin. Think of them as Tux's littlest sibling ^.^
