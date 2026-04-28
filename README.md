@@ -118,8 +118,11 @@ To customize the sound:
 - Bell sound plays the default system sound, but you can hit + Add Sound and point it to any .wav 
 - If you have multiple, it selects one at random every time ^.^
 
+**Codespaces**
+For mine, it's the same as VSCode. And it all runs!
+
 **Other terminals**
-Look for a bell or sound option in your terminal's preferences - I don't have experience here (note to self: try github codespaces to be able to provide more information)
+Look for a bell or sound option in your terminal's preferences - I don't have experience here 
 
 **If you can't get the bell working,** everything else works fine without it — you just won't get an audio nudge at transitions. The visual output makes it clear when blocks end regardless. I tried to make transitions color unique.
 
