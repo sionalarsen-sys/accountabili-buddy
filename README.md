@@ -1,7 +1,7 @@
-# accountabili-buddy
+# [🔧 Hard hat required: Under constuction 🔧] accountabili-buddy [🔧 Version 1.1 updates incoming 🔧]
 
 ```
-૮(„• ⌔ •„)ა
+૮(„• ⌔ •„)ა⛑
  Hi, I'm abuddy
 ```
 
