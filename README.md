@@ -15,7 +15,8 @@ A standard Pomodoro timer tells you when to work and when to stop. Abuddy does t
 ---
 ## Learn More
 
-To read more about why I developed this and the process, you can visit my blog at this post: [404: Not Found, still writing the thing]
+To read more about why I developed this and the process, you can visit my blog at this post: [Dev Log: I Made a Little Guy - Abuddy](https://sionalarsen-sys.github.io/posts/abuddydev/)
+(Note: it primarily vocuses on version 1.0 but does lay out some details from the v1.1 update that is live)
 
 ---
 
