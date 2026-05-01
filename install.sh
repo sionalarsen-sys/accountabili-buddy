@@ -2,6 +2,7 @@
 
 # ─────────────────────────────────────────
 #  ACCOUNTABILI-BUDDY — Installer
+#  v1.1.1
 # ─────────────────────────────────────────
 
 NC=$'\e[0m'
@@ -188,13 +189,13 @@ ABUDDY_DIR="$ABUDDY_DIR"
 EXERCISES_FILE="\$ABUDDY_DIR/exercises.txt"
 GOALS_FILE="\$ABUDDY_DIR/goals.txt"
 QUOTES_FILE="\$ABUDDY_DIR/quotes.txt"
-REWARDS_FILE="\$ABUDDY_DIR/rewards.txt"
 SESSION_Q_FILE="\$ABUDDY_DIR/session-q.txt"
 BREAK_Q_FILE="\$ABUDDY_DIR/break-q.txt"
 
 # List files — auto (abuddy adds to these during sessions)
 AUTO_NUDGES_FILE="\$ABUDDY_DIR/auto-nudges.txt"
 AUTO_WINS_FILE="\$ABUDDY_DIR/auto-wins.txt"
+AUTO_REWARDS_FILE="\$ABUDDY_DIR/auto-rewards.txt"
 
 # Log
 LOG_FILE="\$ABUDDY_DIR/abuddy.log.md"
@@ -206,7 +207,7 @@ DEFAULT_SESSIONS=4
 BIG_BREAK=20
 
 # ── LABEL ──
-FOCUS_LABEL=round
+FOCUS_NAME="Focus Round"
 
 # ── TOGGLES ──
 ALERT_MODE=both         # both / sound / flash / silent
@@ -238,7 +239,7 @@ cat > "$ABUDDY_DIR/quotes.txt" << 'EOF'
 Add your favourite motivational quotes here, one per line.
 EOF
 
-cat > "$ABUDDY_DIR/rewards.txt" << 'EOF'
+cat > "$ABUDDY_DIR/auto-rewards.txt" << 'EOF'
 a hot drink and five minutes outside
 your favourite snack
 a short walk around the block
@@ -258,9 +259,10 @@ EOF
 cat > "$ABUDDY_DIR/break-q.txt" << 'EOF'
 What did you do on your break?
 Did anything on your break re-energize you?
-What's one thing you noticed during your break?
-Did you move around? How does your body feel?
-What are you bringing back to your desk?
+What's one thing that helped you reset just now?
+What movement actually felt good today?
+What's something small that made the break worthwhile?
+What do you want to remember to do next break?
 Did anything helpful happen on your break?
 EOF
 
@@ -286,7 +288,7 @@ chmod 600 "$ABUDDY_DIR/abuddy.cfg"
 chmod 600 "$ABUDDY_DIR/exercises.txt"
 chmod 600 "$ABUDDY_DIR/goals.txt"
 chmod 600 "$ABUDDY_DIR/quotes.txt"
-chmod 600 "$ABUDDY_DIR/rewards.txt"
+chmod 600 "$ABUDDY_DIR/auto-rewards.txt"
 chmod 600 "$ABUDDY_DIR/session-q.txt"
 chmod 600 "$ABUDDY_DIR/break-q.txt"
 chmod 600 "$ABUDDY_DIR/auto-nudges.txt"
@@ -299,7 +301,7 @@ echo -e "${LIME}Created: $ABUDDY_DIR/goals.txt${NC}"
 sleep 0.2
 echo -e "${LIME}Created: $ABUDDY_DIR/quotes.txt${NC}"
 sleep 0.2
-echo -e "${LIME}Created: $ABUDDY_DIR/rewards.txt${NC}"
+echo -e "${LIME}Created: $ABUDDY_DIR/auto-rewards.txt${NC}"
 sleep 0.2
 echo -e "${LIME}Created: $ABUDDY_DIR/session-q.txt${NC}"
 sleep 0.2

@@ -2,10 +2,11 @@
 
 # ─────────────────────────────────────────
 #  ACCOUNTABILI-BUDDY — Updater
+# v1.1.1
 #  update.sh
 # ─────────────────────────────────────────
 
-UPDATER_VERSION="1.1"
+UPDATER_VERSION="1.1.1"
 
 NC=$'\e[0m'
 PLUM=$'\e[38;5;13m'
@@ -108,14 +109,14 @@ add_key_if_missing() {
 }
 # shellcheck disable=SC2016
 add_key_if_missing "BIG_BREAK"            "20"    "big break duration in minutes"
-add_key_if_missing "FOCUS_LABEL"          "round" "what a single work period is called"
+add_key_if_missing "FOCUS_NAME"          "Focus Round" "what a single work period is called"
 add_key_if_missing "ALERT_MODE"           "both"  "both / sound / flash / silent"
 add_key_if_missing "REWARDS_ENABLED"      "ask"   "ask / always / off"
 add_key_if_missing "COMPLETION_TRACKING"  "ask"   "ask / always / off"
 add_key_if_missing "BUFFER_REVIEW"        "ask"   "ask / always / off"
 add_key_if_missing "BREAK_REFLECTION"     "ask"   "ask / always / off"
 # shellcheck disable=SC2016
-add_key_if_missing "REWARDS_FILE"         '"\$ABUDDY_DIR/rewards.txt"'       ""
+add_key_if_missing "REWARDS_FILE"         '"\$ABUDDY_DIR/auto-rewards.txt"'       ""
 # shellcheck disable=SC2016
 add_key_if_missing "SESSION_Q_FILE"       '"\$ABUDDY_DIR/session-q.txt"'     ""
 # shellcheck disable=SC2016
@@ -144,8 +145,8 @@ EOF
 }
 
 # Manual files
-if [ ! -f "${ABUDDY_DIR}/rewards.txt" ]; then
-    cat > "${ABUDDY_DIR}/rewards.txt" << 'EOF'
+if [ ! -f "${ABUDDY_DIR}/auto-rewards.txt" ]; then
+    cat > "${ABUDDY_DIR}/auto-rewards.txt" << 'EOF'
 a hot drink and five minutes outside
 your favourite snack
 a short walk around the block
@@ -153,8 +154,8 @@ ten minutes of a show or video
 a chapter of whatever you're reading
 a stretch and some fresh air
 EOF
-    chmod 600 "${ABUDDY_DIR}/rewards.txt"
-    echo -e "${YELLOW}Created missing file: ${ABUDDY_DIR}/rewards.txt${NC}"
+    chmod 600 "${ABUDDY_DIR}/auto-rewards.txt"
+    echo -e "${YELLOW}Created missing file: ${ABUDDY_DIR}/auto-rewards.txt${NC}"
     CHANGES_MADE=true
 fi
 
@@ -268,8 +269,8 @@ update_config_key "BIG_BREAK"        "$BIG_BREAK"        "Big break duration in 
 
 echo -e "${LAVENDER}── LABEL ────────────────────────────────────${NC}"
 echo ""
-update_config_key "FOCUS_LABEL" "$FOCUS_LABEL" "What to call a single work period" \
-    "Examples: round, period, sprint, stretch — one word"
+update_config_key "FOCUS_NAME" "$FOCUS_NAME" "What to call a single work period" \
+    "Examples: Focus round, Deep work, Pomodoro — full name"
 
 echo -e "${LAVENDER}── ALERT ────────────────────────────────────${NC}"
 echo ""

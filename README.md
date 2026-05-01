@@ -1,8 +1,8 @@
-# [🔧 Hard hat required: Under constuction 🔧] accountabili-buddy [🔧 Version 1.1 updates incoming 🔧]
+# UPDATE 5/1/2026 accountabili-buddy v1.1.1
 
 ```
 ૮(„• ⌔ •„)ა⛑
- Hi, I'm abuddy
+ Hi, I'm abuddy v1.1.1
 ```
 
 > *"It looks like you're trying to focus. Can I help with that?"*
@@ -16,7 +16,15 @@ A standard Pomodoro timer tells you when to work and when to stop. Abuddy does t
 ## Learn More
 
 To read more about why I developed this and the process, you can visit my blog at this post: [Dev Log: I Made a Little Guy - Abuddy](https://sionalarsen-sys.github.io/posts/abuddydev/)
-(Note: it primarily vocuses on version 1.0 but does lay out some details from the v1.1 update that is live)
+(Note: it primarily focuses on version 1.0 but does lay out some details from the v1.1 update that is live)
+
+---
+
+## tl;dr
+
+Abuddy v1.1.1 is still the original out of the box abuddy but with some optional features and a much slicker configuration set up. Run `install.sh` if you're brand new to abuddy or `update.sh` if you already have abuddy and want to new features.
+
+Abuddy now offers a reward system, a break reflection to input new items into the nudges doc, goal completion tracking, a big break after a reflection, and more. Check out the changelog for the breakdown.
 
 ---
 
@@ -79,10 +87,14 @@ Your list files live in `~/.abuddy/` (or wherever you installed). Each file is p
 | File | Used for |
 |---|---|
 | `exercises.txt` | Movement suggestions shown during breaks |
-| `nudges.txt` | Self care reminders shown during breaks |
+| `auto-nudges.txt` | Self care reminders shown during breaks |
 | `goals.txt` | Pulled randomly if you skip the goal prompt at setup |
-| `reflections.txt` | Random reflection question at session end |
-| `wins.txt` | One past win shown at the start of each session |
+| `session-q.txt` (previously `reflections.txt`) | Random reflection question at session end |
+| `auto-wins.txt` | One past win shown at the start of each session |
+| NEW `break-q.txt` | Questions for end of break to help build the nudges list |
+| NEW `auto-rewards.txt` | List of things that you can reward/treat yourself with at break times |
+
+UPDATE: Standardized `txt` file format. `auto-*.txt` are files that abuddy will write to during a session (if you want them to). `*-q.txt` are files holding questions for reflection. All other `*.txt` files remain the same
 
 The `examples/` folder in this repo has the starter entries so you can see the format and get ideas for what to add or change.
 
@@ -99,6 +111,37 @@ DEFAULT_SESSIONS=4    # number of sessions
 ```
 
 These values pre-fill the setup prompts when you press Enter without typing anything. You can still override them at the start of any session — the config just sets your personal starting point.
+
+---
+
+## NEW `update.sh`
+
+Already have abuddy installed but want the new updates? Or want to change some of your files and settings in the config file without manually mucking about in the guts?
+
+Introducing `update.sh`
+
+This script will check to see if you already have a config file -- if you don't, run `install.sh` -- and then double check the version. If you're all up to date, nothing is changed or added but you can continue on to changing your configuration on other settings.
+
+`install.sh` will still allow you to do a full fresh install if you want (and check the demo for the new features), but I still recommend backing up any logs you want to keep.
+
+---
+
+## NEW Config Keys and Features
+
+The previous session settings are still there but now you have so many more options to make abuddy right for you!
+
+`BIG_BREAK` is a default 20 minute break after your reflection
+`FOCUS_NAME` Name the working/studying period whatever your heart desires. Default is Focus Round.
+`ALERT_MODE` **Not Fully Operational** This will let you change between sound, flashing, both, or silent
+
+```bash
+REWARDS_ENABLED
+COMPLETION_TRACKING
+BUFFER_REVIEW
+BREAK_REFLECTION
+```
+
+These settings als you to set them as ask at each session, always on, or off so you don't see them at all in your sessions.
 
 ---
 
@@ -134,9 +177,48 @@ I would love to look into more ways to get notifications from the script in futu
 
 ## Session Log
 
-Every session is appended to `~/.abuddy/abuddy.log.md` in Markdown format, recording your start and finish times, all your goals (including mid-session changes), your reflection, and your win if you logged one.
+Every session is appended to `~/.abuddy/abuddy.log.md` in Markdown format — readable in any text editor, and compatible with note-taking apps like Obsidian if you want to pull it into a vault.
 
-The file is plain Markdown — readable in any text editor, and compatible with note-taking apps like Obsidian if you want to pull it into a vault.
+NEW
+
+The original Start, finish, goals, reflection, and win are still included in the log but now there's more.
+
+- Completion marking on goals with time stamp 
+- Final reward
+- The amount of time between hitting the end of a round/break and before you hit enter to start the next (buffer time)
+- Answers to your break questions
+
+Most of these are togglable/optional - check your configurations
+
+---
+
+## Changelog
+
+### v1.1.1
+- Refactored reward, goal completion, and break reflection into functions
+- Timestamp displays now include seconds
+- Focus label now fully customizable via FOCUS_NAME
+- Final goal correctly asking if you completed it
+- Updated default break-q to be more useful for generating content for auto-nudges
+
+### v1.1.0
+- Added reward system to motivate you to your break
+- Added goal completion tag to mark in the log (fix for final goal in v1.1.1)
+- Added a buffer timer tracker to count time when rounds and breaks aren't active
+- Added end of break prompts to generate material for the nudges list
+- Added an optional end of session big break of 20 minutes after the reflection
+- Reworked configuration set up to allow for setting default time of big break, change the name of focus rounds, and toggles on added functions
+
+---
+
+## Roadmap
+
+Here's a preview of what's in the works for V1.2:
+
+- Add a demo mode
+- Mid-round reward reminder
+- Big reward list for your big break
+- Dynamic focus labels so you can choose to randomize every session
 
 ---
 
@@ -150,6 +232,9 @@ This is an early version and there's room to grow. Things on the wishlist:
 - Configurable color themes (I considered shipping a more monochrome version but this is my script, I do what I want)
 - Further notifications
 - Anything else the community suggests
+- `Hey buddy` short journaling optional feature
+- Virtual pet abuddy
+- Abuddy in Ren'Py
 
 If you have ideas or found a bug, feel free to open an issue or reach out directly. This is a work in progress and feedback is genuinely welcome.
 
@@ -171,6 +256,7 @@ See [LICENSE](LICENSE) for the full text.
 ## Author
 
 - Siona Larsen
+- sys.sionalarsen@gmail.com
 - https://www.linkedin.com/in/sionalarsen/
 - Blog: https://sionalarsen-sys.github.io/
 
