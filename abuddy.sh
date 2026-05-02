@@ -91,7 +91,7 @@ save_previous_reward() {
     echo ""
     read -r -p "$(echo -e "${YELLOW}Save '$ROUND_REWARD' to your rewards list? (y/Enter to skip): ${NC}")" SAVE_REWARD
     if [ "$SAVE_REWARD" = "y" ] || [ "$SAVE_REWARD" = "Y" ]; then
-        echo "$ROUND_REWARD" >> "$REWARDS_FILE"
+        echo "$ROUND_REWARD" >> "$AUTO_REWARDS_FILE"
         echo -e "${LIME}Saved to rewards list.${NC}"
     fi
 }
@@ -102,8 +102,8 @@ set_round_reward() {
     echo ""
 
     # First round only — show a suggestion from the list
-    if [ "$FIRST" = "true" ] && [ -s "$REWARDS_FILE" ]; then
-        SUGGESTED=$(shuf -n 1 "$REWARDS_FILE")
+    if [ "$FIRST" = "true" ] && [ -s "$AUTO_REWARDS_FILE" ]; then
+        SUGGESTED=$(shuf -n 1 "$AUTO_REWARDS_FILE")
         echo -e "૮(„• ⌔ •„)ა🎁"
         echo -e "${YELLOW}Suggested reward: $SUGGESTED${NC}"
         read -r -p "$(echo -e "${YELLOW}Set a reward for this ${FOCUS_NAME}? (Enter for suggestion / r for random / type your own / s to skip): ${NC}")" REWARD_INPUT
@@ -118,8 +118,8 @@ set_round_reward() {
         ROUND_REWARD=""
         REWARD_SOURCE=""
     elif [ "$REWARD_INPUT" = "r" ] || [ "$REWARD_INPUT" = "R" ]; then
-        if [ -s "$REWARDS_FILE" ]; then
-            ROUND_REWARD=$(shuf -n 1 "$REWARDS_FILE")
+        if [ -s "$AUTO_REWARDS_FILE" ]; then
+            ROUND_REWARD=$(shuf -n 1 "$AUTO_REWARDS_FILE")
             REWARD_SOURCE="list"
         else
             echo -e "${GREY}No rewards list found — type one in instead.${NC}"

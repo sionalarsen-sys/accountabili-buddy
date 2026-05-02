@@ -116,7 +116,7 @@ add_key_if_missing "COMPLETION_TRACKING"  "ask"   "ask / always / off"
 add_key_if_missing "BUFFER_REVIEW"        "ask"   "ask / always / off"
 add_key_if_missing "BREAK_REFLECTION"     "ask"   "ask / always / off"
 # shellcheck disable=SC2016
-add_key_if_missing "REWARDS_FILE"         '"\$ABUDDY_DIR/auto-rewards.txt"'       ""
+add_key_if_missing "AUTO_REWARDS_FILE"         '"\$ABUDDY_DIR/auto-rewards.txt"'       ""
 # shellcheck disable=SC2016
 add_key_if_missing "SESSION_Q_FILE"       '"\$ABUDDY_DIR/session-q.txt"'     ""
 # shellcheck disable=SC2016
