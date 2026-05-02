@@ -3,10 +3,10 @@
 # ─────────────────────────────────────────
 #  ACCOUNTABILI-BUDDY (abuddy)
 #  A pomodoro timer with built-in self care
-#  Version 1.1.1
+#  Version 1.1.2
 # ─────────────────────────────────────────
 # shellcheck disable=SC2034
-ABUDDY_VERSION="1.1.1" # read by update.sh — not used internally
+ABUDDY_VERSION="1.1.2" # read by update.sh — not used internally
 
 # ── CONFIG ──
 # shellcheck source=/dev/null

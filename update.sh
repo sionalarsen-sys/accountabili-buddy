@@ -2,11 +2,11 @@
 
 # ─────────────────────────────────────────
 #  ACCOUNTABILI-BUDDY — Updater
-# v1.1.1
+# v1.1.2
 #  update.sh
 # ─────────────────────────────────────────
 
-UPDATER_VERSION="1.1.1"
+UPDATER_VERSION="1.1.2"
 
 NC=$'\e[0m'
 PLUM=$'\e[38;5;13m'
