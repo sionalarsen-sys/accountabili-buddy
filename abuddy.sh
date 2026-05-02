@@ -194,33 +194,32 @@ echo -e "${TEAL}$SESSIONS ${FOCUS_NAME}s × ${DURATION} min work / ${BREAK_DURAT
 echo ""
 read -r -p "$(echo -e "${LIME}Press Enter to begin...${NC}")" _
 
-# Past win — reminds you that you've done it before
-if [ -f "$AUTO_WINS_FILE" ] && [ -s "$AUTO_WINS_FILE" ]; then
-    PAST_WIN=$(shuf -n 1 "$AUTO_WINS_FILE")
-    RAINBOW_WAY=${RAINBOW_CONNECTION[$((RANDOM % ${#RAINBOW_CONNECTION[@]}))]}
-    echo ""
-    echo -e "૮(„• ⌔ •„)ა✦"
-    echo -e "${RAINBOW_WAY}A win from a past session: $PAST_WIN${NC}"
-fi
-
 
 for i in $(seq 1 "$SESSIONS"); do
 
-    # ── TOP OF ROUND — reward, goal, reminder ──
     if [ "$i" -eq 1 ]; then
-# First round — no previous reward to save, suggestion shown
-set_round_reward true
+    # ── FIRST ROUND ONLY ──
+    set_round_reward true
+
+    # Win display — reward is set, "press enter to start" is next
+    if [ -f "$AUTO_WINS_FILE" ] && [ -s "$AUTO_WINS_FILE" ]; then
+        PAST_WIN=$(shuf -n 1 "$AUTO_WINS_FILE")
+        RAINBOW_WAY=${RAINBOW_CONNECTION[$((RANDOM % ${#RAINBOW_CONNECTION[@]}))]}
+        echo ""
+        echo -e "૮(„• ⌔ •„)ა✦"
+        echo -e "${RAINBOW_WAY}A win from a past session: $PAST_WIN${NC}"
+    fi
+
+    else
         # ── BETWEEN ROUNDS ──
         echo ""
         echo -e "${LAVENDER}─────────────────────────────────────────${NC}"
         echo ""
         echo -e "૮(„• ⌔ •„)ა📝"
 
-        # Goal check
-     check_goal_completion
+        check_goal_completion
         echo ""
 
-        # Reminder update
         read -r -p "$(echo -e "${PINK}Reminder: '${SESSION_REMINDER:-none}' — Enter to keep, or type new: ${NC}")" NEW_REMINDER
         if [ -n "$NEW_REMINDER" ]; then
             SESSION_REMINDER="$NEW_REMINDER"
@@ -228,11 +227,14 @@ set_round_reward true
         fi
         echo ""
 
-      save_previous_reward
-    set_round_reward
-        echo ""
-        read -r -p "$(echo -e "${LIME}Press Enter to start ${FOCUS_NAME} $(( i ))...${NC}")" _
+        save_previous_reward
+        set_round_reward
+
     fi
+
+    # ── EVERY ROUND ──
+    echo ""
+    read -r -p "$(echo -e "${LIME}Press Enter to start ${FOCUS_NAME} $i...${NC}")" _
 
     # ── FOCUS BLOCK ──
     # shellcheck disable=SC2034
@@ -287,10 +289,8 @@ set_round_reward true
         echo ""
     fi
 
-    echo -e "Started:${TEAL} $(date +"%I:%M:%S %p")${NC}"
-    if [ "$i" -lt "$SESSIONS" ]; then
-        echo -e "Back to work:${PINK} $(date -d "+${BREAK_DURATION} minutes" +"%I:%M:%S %p")${NC}"
-    fi
+   echo -e "Break Started:${TEAL} $(date +"%I:%M:%S %p")${NC}"
+    echo -e "Break ends:${PINK} $(date -d "+${BREAK_DURATION} minutes" +"%I:%M:%S %p")${NC}"
     echo ""
 
     # Session reminder
