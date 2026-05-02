@@ -10,7 +10,7 @@ ABUDDY_VERSION="1.1.2" # read by update.sh — not used internally
 
 # ── CONFIG ──
 # shellcheck source=/dev/null
-CONFIG="$HOME/.abuddy/abuddy.cfg"
+CONFIG="${1:-$HOME/.abuddy/abuddy.cfg}"
 
 if [ ! -f "$CONFIG" ]; then
     echo "abuddy config not found. Have you run install.sh?"

@@ -19,16 +19,17 @@ PINK=$'\e[38;5;219m'
 #ORANGE=$'\e[38;5;214m'
 LAVENDER=$'\e[38;5;141m'
 
-# ── LOCATE CONFIG ──
-CONFIG="$HOME/.abuddy/abuddy.cfg"
+# ── FIND CONFIG ──
+CONFIG="${1:-$HOME/.abuddy/abuddy.cfg}"
 
 if [ ! -f "$CONFIG" ]; then
     echo ""
     echo -e "${PINK}No abuddy config found at $CONFIG${NC}"
-    echo -e "${PINK}Looks like abuddy isn't installed yet.${NC}"
+    echo -e "${PINK}Looks like abuddy isn't installed yet — or was installed to a custom path.${NC}"
     echo ""
-    echo -e "${PLUM}Run install.sh first:${NC}"
+    echo -e "${PLUM}Run install.sh first, or point update.sh at your config:${NC}"
     echo -e "${TEAL}  bash install.sh${NC}"
+    echo -e "${TEAL}  bash update.sh ~/.myabuddy/abuddy.cfg${NC}"
     echo ""
     exit 1
 fi
